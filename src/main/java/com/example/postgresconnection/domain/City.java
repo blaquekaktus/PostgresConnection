@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="cities")
 public class City {
-    @Id
+     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;

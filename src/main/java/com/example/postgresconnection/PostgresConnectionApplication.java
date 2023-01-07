@@ -12,28 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class PostgresConnectionApplication {
 
-    @RestController
-    public class CityController{
-        @Autowired
-        CityRepository cityRepository;
-
-        @GetMapping("/innsbruck")
-        public City innsbruck(){
-            return cityRepository.findCityByName("Innsbruck");
-        }
-
-        @GetMapping("/vienna")
-        public City vienna(){
-            return cityRepository.findCityByName("Vienna");
-        }
-    }
-
     public static void main(String[] args) {
         ConfigurableApplicationContext appContext = SpringApplication.run(PostgresConnectionApplication.class, args);
 
         City innsbruck = new City();
         innsbruck.setName("Innsbruck");
-        innsbruck.setCapital(false);
+
+        City imst = new City();
+        imst.setName("Imst");
+        imst.setCapital(false);
 
         City vienna = new City();
         vienna.setName("Vienna");
@@ -41,23 +28,28 @@ public class PostgresConnectionApplication {
 
         City linz = new City();
         linz.setName("Linz");
-        linz.setCapital(false);
+        linz.setCapital(true);
 
         City klagenfurt = new City();
         klagenfurt.setName("Klagenfurt");
-        klagenfurt.setCapital(false);
+        klagenfurt.setCapital(true);
 
         City stPolten = new City();
         stPolten.setName("St. Polten");
-        stPolten.setCapital(false);
+        stPolten.setCapital(true);
+
+        City salzburg = new City();
+        salzburg.setName("Salzburg");
+        salzburg.setCapital(true);
 
         CityRepository cityRepository = appContext.getBean(CityRepository.class);
         cityRepository.save(innsbruck);
+        cityRepository.save(imst);
         cityRepository.save(vienna);
         cityRepository.save(klagenfurt);
         cityRepository.save(linz);
         cityRepository.save(stPolten);
-
+        cityRepository.save(salzburg);
     }
 
 }
